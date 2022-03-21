@@ -4,6 +4,11 @@ public class Line {
 	private Point startPoint;
 	private Point endPoint;
 	private boolean selected;
+	
+	public double length() {
+		return this.startPoint.distance(endPoint.getX(), getEndPoint().getY());
+	}
+	
 	public void setStartPoint(Point startPoint) {
 		this.startPoint=startPoint;
 	}
