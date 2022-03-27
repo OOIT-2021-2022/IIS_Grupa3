@@ -72,6 +72,15 @@ public class Test {
 		// 8. Postaviti x koordinatu centra kruga c1 na vrednost razlike
 		// povrsine pravougaonika r1 i y koordinate pocetne tacke linije l1
 		c1.getCenter().setX(r1.area() - l1.getStartPoint().getY());
+
+		// Vezbe 4
+		/*
+		 * 1.Postaviti koordinatu x centra ranije kreiranog kruga k na vrednost zbira
+		 * vrednosti poluprecnika kruga k i vrednosti koja predstavlja udaljenost
+		 * pocetne i krajnje tacke prethodno kreirane linije lin (NE duzine). Sve
+		 * objekte kreirati samostalno.
+		 */
+
 	}
 
 }
