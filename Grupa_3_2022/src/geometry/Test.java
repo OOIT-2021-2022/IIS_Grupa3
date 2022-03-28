@@ -81,6 +81,42 @@ public class Test {
 		 * objekte kreirati samostalno.
 		 */
 
+		System.out.println("Vezbe 4");
+		Circle k=new Circle();
+		Line lin=new Line();
+		lin.setStartPoint(p);
+		lin.setEndPoint(p1);
+		k.setCenter(p);
+		k.getCenter().setX((int)(k.getRadius()+
+				(lin.getStartPoint().distance(lin.getEndPoint().getX(), 
+						lin.getEndPoint().getY()))));
+		
+		/*Point p4=new Point();
+		p4.setX(10);
+		p4.setY(15);*/
+		Point p4=new Point(10,15);
+		System.out.println("X koordinata p4: " + p4.getX());
+		//kada zelim promenu vrednosti mogu pozvati setX()
+		p4.setX(20);
+		System.out.println("X koordinata p4: " + p4.getX());
+		
+		//toString() je redefinisan za sad samo u Point
+		System.out.println("p4: " + p4);
+		System.out.println("p4: " + p4.toString());
+		System.out.println("lin: " + lin.toString());
+		
+		
+		//prenos po vrednosti i referenci i poredjenje objekata
+		Point p5=new Point(10,15);
+		Point p6=new Point(10,15);
+		System.out.println(p5==p6);
+		System.out.println(p5.equals(p6));
+		
+		p5=p6;
+		
+		System.out.println(p5==p6);
+		System.out.println(p5.equals(p6));
+		
 	}
 
 }
