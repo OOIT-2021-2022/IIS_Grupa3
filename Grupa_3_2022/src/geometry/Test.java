@@ -117,6 +117,8 @@ public class Test {
 		System.out.println(p5==p6);
 		System.out.println(p5.equals(p6));
 		
+		//ZADATAK - testirati konstruktore, toString() i equals(...) metode
+		
 	}
 
 }
