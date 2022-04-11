@@ -28,13 +28,21 @@ public class Point {
 	}
 
 	public boolean equals(Object obj) {
-		if(obj instanceof Point) {
-			Point pomocna=(Point)obj;
-			if(this.x==pomocna.x && this.y==pomocna.y) {
+		if (obj instanceof Point) {
+			Point pomocna = (Point) obj;
+			if (this.x == pomocna.x && this.y == pomocna.y) {
 				return true;
 			}
 		}
 		return false;
+	}
+
+	public boolean contains(int x, int y) {
+		return this.distance(x, y) <= 2;
+	}
+	
+	public boolean contains(Point clickPoint) {
+		return distance(clickPoint.x, clickPoint.getY()) <= 2;
 	}
 
 	public double distance(int xPoint2, int yPoint2) {
