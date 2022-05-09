@@ -58,6 +58,27 @@ public class Point extends Shape {
 		g.drawLine(x, y - 2, x, y + 2);
 	}
 
+	@Override
+	public void moveTo(int x, int y) {
+		this.x = x;
+		setY(y);
+	}
+
+	@Override
+	public void moveBy(int byX, int byY) {
+		x += byX;
+		setY(y + byY);
+	}
+	
+	@Override
+	public int compareTo(Object obj) {
+		if(obj instanceof Point) {
+			Point shapeToCompare = (Point)obj;
+			return (int)(this.distance(0, 0) - shapeToCompare.distance(0, 0));
+		}
+		return 0;
+	}
+
 	public void setX(int x) {
 		this.x = x;
 	}
@@ -83,5 +104,7 @@ public class Point extends Shape {
 
 		return "(" + x + "," + y + ")";
 	}
+
+
 
 }
