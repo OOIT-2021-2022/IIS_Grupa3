@@ -64,6 +64,17 @@ public class Drawing extends JPanel {
 		shapes.get(3).draw(g);
 
 		shapes.add(3, l1);
+		
+		try {
+			c1.setRadius(-10);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		
+		System.out.println("Sve je ok");
+		
+		System.out.println("Fali 4. zadatak");
 
 	}
 
