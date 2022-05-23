@@ -72,9 +72,14 @@ public class Drawing extends JPanel {
 			System.out.println(e.getMessage());
 		}
 		
-		System.out.println("Sve je ok");
-		
-		System.out.println("Fali 4. zadatak");
+		System.out.println("4. zadataka");	
+		it = shapes.iterator();
+		while (it.hasNext()) {
+			Shape sh = it.next();
+			sh.moveBy(10, 0);
+			sh.setSelected(true);
+			sh.draw(g);
+		}
 
 	}
 

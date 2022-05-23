@@ -1,5 +1,6 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Point extends Shape {
@@ -56,6 +57,13 @@ public class Point extends Shape {
 	public void draw(Graphics g) {
 		g.drawLine(x - 2, y, x + 2, y);
 		g.drawLine(x, y - 2, x, y + 2);
+
+		if (isSelected()) {
+			g.setColor(Color.BLUE);
+			g.drawRect(x - 2, y - 2, 4, 4);
+			g.setColor(Color.black);
+		}
+
 	}
 
 	@Override
@@ -69,12 +77,12 @@ public class Point extends Shape {
 		x += byX;
 		setY(y + byY);
 	}
-	
+
 	@Override
 	public int compareTo(Object obj) {
-		if(obj instanceof Point) {
-			Point shapeToCompare = (Point)obj;
-			return (int)(this.distance(0, 0) - shapeToCompare.distance(0, 0));
+		if (obj instanceof Point) {
+			Point shapeToCompare = (Point) obj;
+			return (int) (this.distance(0, 0) - shapeToCompare.distance(0, 0));
 		}
 		return 0;
 	}
@@ -104,7 +112,5 @@ public class Point extends Shape {
 
 		return "(" + x + "," + y + ")";
 	}
-
-
 
 }

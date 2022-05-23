@@ -1,5 +1,6 @@
 package geometry;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Circle extends Shape {
@@ -50,25 +51,35 @@ public class Circle extends Shape {
 	}
 
 	public void draw(Graphics g) {
-		g.drawOval(center.getX() - radius, center.getY() - radius, 
-				2 * radius, 2 * radius);
+		g.drawOval(center.getX() - radius, center.getY() - radius, 2 * radius, 2 * radius);
+
+		if (isSelected()) {
+			g.setColor(Color.BLUE);
+			g.drawRect(center.getX() - 2, center.getY() - 2, 4, 4);
+			g.drawRect(center.getX() - radius - 2, center.getY() - 2, 4, 4);
+			g.drawRect(center.getX() + radius - 2, center.getY() - 2, 4, 4);
+			g.drawRect(center.getX() - 2, center.getY() - radius - 2, 4, 4);
+			g.drawRect(center.getX() - 2, center.getY() + radius - 2, 4, 4);
+			g.setColor(Color.black);
+		}
+
 	}
-	
+
 	@Override
 	public void moveTo(int x, int y) {
-		this.center.moveTo(x, y);		
+		this.center.moveTo(x, y);
 	}
 
 	@Override
 	public void moveBy(int byX, int byY) {
-		this.center.moveBy(byX, byY);		
+		this.center.moveBy(byX, byY);
 	}
-	
+
 	@Override
 	public int compareTo(Object obj) {
-		if(obj instanceof Circle) {
-			Circle shapeToCompare = (Circle)obj;
-			return (int)(this.area() - shapeToCompare.area());
+		if (obj instanceof Circle) {
+			Circle shapeToCompare = (Circle) obj;
+			return (int) (this.area() - shapeToCompare.area());
 		}
 		return 0;
 	}
@@ -86,8 +97,8 @@ public class Circle extends Shape {
 	}
 
 	public void setRadius(int radius) throws Exception {
-		
-		if(radius < 0) {
+
+		if (radius < 0) {
 			throw new Exception("Radius mora biti veci od 0!");
 		}
 		this.radius = radius;
@@ -97,7 +108,5 @@ public class Circle extends Shape {
 		// Center=(x,y), radius= radius
 		return "Center=" + center.toString() + ", radius=" + radius;
 	}
-
-
 
 }
