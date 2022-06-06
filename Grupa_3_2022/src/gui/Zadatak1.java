@@ -33,6 +33,8 @@ public class Zadatak1 extends JFrame {
 	private JLabel lblPlava;
 	private JLabel lblZuta;
 	private DefaultListModel<String> dlm=new DefaultListModel<String>();
+	private JList<String> list;
+	private DlgAddModifyColor dlgColor;
 
 	/**
 	 * Launch the application.
@@ -129,6 +131,30 @@ public class Zadatak1 extends JFrame {
 				dlm.addElement(lblZuta.getText());
 			}
 		});
+		
+		JButton btnAddColor = new JButton("Dodaj boju");
+		btnAddColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dlgColor=new DlgAddModifyColor();
+				dlgColor.setVisible(true);
+				
+				if (dlgColor.isOk()) {
+					String colorString = dlgColor.getTxtFieldRed().getText() + " "
+							+ dlgColor.getTxtFieldGreen().getText() + " " + dlgColor.getTxtFieldBlue().getText() + " ";
+					dlm.addElement(colorString);
+					
+					Color colorPanel = new Color(Integer.parseInt(dlgColor.getTxtFieldRed().getText()),
+							Integer.parseInt(dlgColor.getTxtFieldGreen().getText()),
+							Integer.parseInt(dlgColor.getTxtFieldBlue().getText()));
+					pnlCenter.setBackground(colorPanel);
+				}
+			}
+		});
+		GridBagConstraints gbc_btnAddColor = new GridBagConstraints();
+		gbc_btnAddColor.insets = new Insets(0, 0, 5, 0);
+		gbc_btnAddColor.gridx = 2;
+		gbc_btnAddColor.gridy = 1;
+		pnlCenter.add(btnAddColor, gbc_btnAddColor);
 		buttonGroupColor.add(tglbtnZuta);
 		GridBagConstraints gbc_tglbtnZuta = new GridBagConstraints();
 		gbc_tglbtnZuta.fill = GridBagConstraints.HORIZONTAL;
@@ -144,6 +170,39 @@ public class Zadatak1 extends JFrame {
 		gbc_lblZuta.gridy = 2;
 		pnlCenter.add(lblZuta, gbc_lblZuta);
 		
+		JButton btnChangeColor = new JButton("Promeni boju");
+		btnChangeColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!list.isSelectionEmpty()) {
+					dlgColor = new DlgAddModifyColor();
+					int index = list.getSelectedIndex();
+					String selectedValue = dlm.get(index);
+					String[] colorsRGB = selectedValue.split(" ");
+					dlgColor.getTxtFieldRed().setText(colorsRGB[0]);
+					dlgColor.getTxtFieldGreen().setText(colorsRGB[1]);
+					dlgColor.getTxtFieldBlue().setText(colorsRGB[2]);
+					dlgColor.setVisible(true);
+					if (dlgColor.isOk()) {
+						dlm.remove(index);
+						String colorString = dlgColor.getTxtFieldRed().getText() + " "
+								+ dlgColor.getTxtFieldGreen().getText() + " " + dlgColor.getTxtFieldBlue().getText()
+								+ " ";
+						dlm.add(index, colorString);
+
+						Color colorPanel = new Color(Integer.parseInt(dlgColor.getTxtFieldRed().getText()),
+								Integer.parseInt(dlgColor.getTxtFieldGreen().getText()),
+								Integer.parseInt(dlgColor.getTxtFieldBlue().getText()));
+						pnlCenter.setBackground(colorPanel);
+					} 
+				}
+			}
+		});
+		GridBagConstraints gbc_btnChangeColor = new GridBagConstraints();
+		gbc_btnChangeColor.insets = new Insets(0, 0, 5, 0);
+		gbc_btnChangeColor.gridx = 2;
+		gbc_btnChangeColor.gridy = 2;
+		pnlCenter.add(btnChangeColor, gbc_btnChangeColor);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
@@ -151,7 +210,7 @@ public class Zadatak1 extends JFrame {
 		gbc_scrollPane.gridy = 3;
 		pnlCenter.add(scrollPane, gbc_scrollPane);
 		
-		JList<String> list = new JList<String>();
+		list = new JList<String>();
 		scrollPane.setViewportView(list);
 		list.setModel(dlm);
 		
